@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 html, body {
   font-family: 'Amazon Ember';
   width: 100%;
@@ -335,6 +339,8 @@ footer {
 footer p{
   padding: 20px 0px 0px 0px;
 }
+
+/* Mobile Responsive */
 @media only screen and (max-width: 768px) {
   .navCart, .navLogin, .navRegister{
       display: none;
@@ -349,7 +355,7 @@ footer p{
       color: white;
       display: block;
       font-size: 30px;
-      text-align: right;
+      text-align: right;  
       margin-right: 10px;
       margin-top: -100px;
       cursor: pointer;
@@ -357,10 +363,9 @@ footer p{
   .menuItems{
       position: absolute;
       top: 100%;
-      right: 0;
+      left: -1px;
       width: 100%;
       background-color: #232f3e;
-      border-bottom: 1px solid #ccc;
       z-index: 1;
   }
   .menuItems a {
@@ -382,7 +387,30 @@ footer p{
       margin-right: 5px;
   }
   #product_image img{
-      width: 300px;
-      height: 300px;
+      width: 200px;
+      height: 200px;
+  }
+  .placed{
+    font-size: 18px;
+  }
+  .login{
+    width: 90%;
+    height: 100%;
+  }
+  .login h1{
+    font-size: 30px;
+  }
+  .login input, .login button, .login hr{
+    width: 100%;
+  }
+  .register{
+    width: 90%;
+    height: 100%;
+  }
+  .register h1{
+    font-size: 30px;
+  }
+  .register input, .register button, .register hr{
+    width: 100%;
   }
 }

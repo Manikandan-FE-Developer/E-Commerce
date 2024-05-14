@@ -17,6 +17,8 @@ app.use(cors());
 app.use('/api/v1/',products);
 app.use('/api/v1/',orders);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => { 
     console.log(`Server listening to port ${process.env.PORT} in ${process.env.NODE_ENV}`);
 })
+
+// mongodb://0.0.0.0:27017/e-commerce
