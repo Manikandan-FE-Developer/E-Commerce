@@ -49,21 +49,23 @@ To get a local copy of the project up and running, follow these steps:
 
 3. **Set up environment variables**:
 
-   Create a `.env` file in the `backend` directory and specify the required environment variables such as MongoDB connection URI, JWT secret key, etc.
+   - **Backend**: Create a `.env` file in the `backend` directory and specify the required environment variables such as MongoDB connection URI, JWT secret key, etc.
+   - **Frontend**: Create or update the `.env` file in the `frontend` directory with any frontend-specific environment variables.
 
-4. **Start the backend server**:
+
+5. **Start the backend server**:
 
    ```
    cd ../backend && npm start
    ```
 
-5. **Start the frontend development server**:
+6. **Start the frontend development server**:
 
    ```
    cd ../frontend && npm start
    ```
 
-6. **Open the app**:
+7. **Open the app**:
 
    Visit `http://localhost:3000` in your browser to view the application.
 
