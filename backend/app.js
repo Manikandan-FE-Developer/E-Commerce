@@ -17,6 +17,10 @@ app.use(cors());
 app.use('/api/v1/',products);
 app.use('/api/v1/',orders);
 
+app.get("/", (req, res) => {
+    res.send("<h1>E-Commerce Website...</h1>");
+})
+
 app.listen(process.env.PORT, () => { 
     console.log(`Server listening to port ${process.env.PORT} in ${process.env.NODE_ENV}`);
 })
