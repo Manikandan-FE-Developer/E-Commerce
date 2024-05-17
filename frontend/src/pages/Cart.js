@@ -49,6 +49,7 @@ export default function Cart({cartItems, setCartItems}){
             setCartItems([]);
             setComplete(true);
             toast.success("Order Success!");
+            // toast.success("Order Success!", {className: 'toast'});
         })
     }
 
@@ -59,7 +60,7 @@ export default function Cart({cartItems, setCartItems}){
     return  cartItems.length > 0 ? 
             <Fragment>
                 <div class="container container-fluid">
-                    <h2 class="mt-5">Your Cart: <b>{cartItems.length}</b></h2>
+                    <h2 class="mt-5 cartNo">Your Cart: <b>{cartItems.length}</b></h2>
                     <div class="row d-flex justify-content-between">
                         <div class="col-12 col-lg-8">
                             {cartItems.map((item) => 
@@ -79,7 +80,7 @@ export default function Cart({cartItems, setCartItems}){
                                         <p id="card_item_price">₹ {formatPriceWithCommas(item.product.price)}</p>
                                         </div>
                                         <div class="col-4 col-lg-3 mt-4 mt-lg-0">
-                                            <div class="stockCounter d-inline">
+                                            <div class="stockCounter">
                                                 <span class="btn btn-danger minus" onClick={() => decreaseQty(item)}>-</span>
                                                 <input type="number" class="form-control count d-inline" value={item.qty} readOnly />
                                                 <span class="btn btn-primary plus" onClick={() => increaseQty(item)}>+</span>

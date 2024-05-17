@@ -2,34 +2,42 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import {toast} from "react-toastify";
 
-
 export default function ProductDetails({cartItems, setCartItems}){
-    
+    const [isLoading, setIsLoading] = useState(true);
     const [product, setProduct] = useState(null);
     const [qty, setQty] = useState(1);
     const {id} = useParams();
 
     useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
+    useEffect(() => {
         fetch(process.env.REACT_APP_API_URL+'/product/'+id)
         .then(res => res.json())
         .then(res => setProduct(res.product))
-    },[])
+    },[id])
 
     const formatPriceWithCommas = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
     function addToCart(){
-        const itemExist =cartItems.find((item) => item.product._id == product._id);
+        const itemExist =cartItems.find((item) => item.product._id === product._id);
         if (!itemExist) {
             const newItem = {product, qty};
-            setCartItems((state) => [...state, newItem]);    
+            setCartItems((state) => [...state, newItem]);   
             toast.success("Cart item added successfully");
+            // toast.success("Cart item added successfully", {className: 'toast'});
         }
     }
 
     function increaseQty(){
-        if (product.stock == qty) {
+        if (product.stock === qty) {
             return;
         }
         setQty((state) => state + 1);
@@ -41,7 +49,8 @@ export default function ProductDetails({cartItems, setCartItems}){
         }
     }
 
-    return product &&   <div className="container container-fluid">
+    return  isLoading ? ( <img className="spinner" src='/images/spinner.svg' alt='spinner'/> ) : (
+            product &&  <div className="container container-fluid">
                             <div className="row f-flex justify-content-around">
                                 <div className="col-12 col-lg-5 img-fluid" id="product_image">
                                     <img src={product.image} alt="sdf" height="500" width="500"/> 
@@ -60,7 +69,7 @@ export default function ProductDetails({cartItems, setCartItems}){
                                         <input type="number" className="form-control count d-inline" value={qty} readOnly />
                                         <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                                     </div>
-                                    <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock == 0} onClick={addToCart}>
+                                    <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>
                                         Add to Cart
                                     </button>
                                     <hr/>
@@ -78,4 +87,5 @@ export default function ProductDetails({cartItems, setCartItems}){
                                 </div>
                             </div>
                         </div>
+    );
 }

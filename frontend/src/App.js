@@ -19,7 +19,7 @@ function App() {
       <div className="App">
          <Router>
             <div>
-               <ToastContainer theme='dark' position="top-center"/>
+               <ToastContainer className="toaster" theme='dark' position="top-center" autoClose={5000}/>
                <Header cartItems={cartItems}/>
                   <Routes>
                      <Route path="/" element={<Home/>}/>

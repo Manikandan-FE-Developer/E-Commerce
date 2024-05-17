@@ -5,13 +5,13 @@
   box-sizing: border-box;
 }
 html, body {
-  font-family: 'Amazon Ember';
   width: 100%;
   height: 100%;
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
   text-align: center;
+  font-family: 'Amazon Ember';
 }
 /* Scroll Bar */
 ::-webkit-scrollbar-track {
@@ -47,12 +47,12 @@ nav {
   font-family: 'Archivo Black';
 }
 /* Menu bar */
-.menuIcon {
+.navMenu {
   display: none;
 }
 .menuItems {
   display: none;
-transition: all 0.3s ease-out; 
+  transition: all 0.3s ease-out; 
 }
 .menuItems.open {
   display: flex;
@@ -85,8 +85,8 @@ transition: all 0.3s ease-out;
 }
 /* Login button*/
 .loginBtn{
-  width: 90px;
-  padding: 5px 10px;
+  width: 80px;
+  padding: 5px;
   color: white;
   background-color: orange;
   border-radius: 5px;
@@ -97,8 +97,8 @@ transition: all 0.3s ease-out;
 }
 /* Register button*/
 .registerBtn{
-  width: 90px;
-  padding: 5px 10px;
+  width: 80px;
+  padding: 5px;
   color: white;
   background-color: orange;
   border-radius: 5px;
@@ -110,7 +110,12 @@ transition: all 0.3s ease-out;
 
 /* Home page */
 #products_heading {
-  margin-top: 1.8rem;
+  margin-top: 1.5rem;
+  margin-bottom: -2rem;
+}
+.spinner{
+  width: 200px;
+  margin-right: 85px;
 }
 .card {
   height: 100%;
@@ -245,6 +250,9 @@ transition: all 0.3s ease-out;
   border-radius: 1rem;
   padding: 2rem 1.5rem;
 }
+#order_summary p{
+  text-align: left;
+}
 .order-summary-values {
   float: right;
   font-weight: bold;
@@ -342,14 +350,32 @@ footer p{
 
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
+  body{
+    font-family: 'Amazon Ember';
+  }
+  .spinner{
+    margin-left: 60px;
+  }
+  /* .toaster{
+    margin:20px 30px;
+    width:250px;
+    height:30px;
+    font-size:13px;
+  } */
   .navCart, .navLogin, .navRegister{
       display: none;
   }
   .navLogo {
       text-align: left;
   }
+  .navbar-brand img, p{
+    z-index: 1;
+  }
   .navSearch {
       text-align: center;
+  }
+  .navMenu{
+    display: block;
   }
   .menuIcon {
       color: white;
@@ -386,13 +412,6 @@ footer p{
   .menuItems a i {
       margin-right: 5px;
   }
-  #product_image img{
-      width: 200px;
-      height: 200px;
-  }
-  .placed{
-    font-size: 18px;
-  }
   .login{
     width: 90%;
     height: 100%;
@@ -412,5 +431,56 @@ footer p{
   }
   .register input, .register button, .register hr{
     width: 100%;
+  }
+  #products_heading {
+    font-size: 30px;
+  }
+  #product_image img{
+    width: 200px;
+    height: 200px;
+  }
+  .cartNo{
+    font-size: 25px;
+    margin-top: -100px;
+    padding: -50px 0px;
+  }
+  .cart-item {
+    width: 300px;
+    height: 150px;
+  }
+  .cart-item img{
+    width: 100%;
+  }
+  .cart-item a {
+    color: grey;
+    font-size: 18px;
+  }
+  .cart-item #card_item_price{
+    font-size: 1.2rem;
+  }
+  .cart-item .stockCounter{
+    width: 100px;
+    height: 100px;
+  }
+  .cart-item .stockCounter span{
+    width: 21px;
+    height: 25px;
+    padding: 0;
+    margin: 0;
+  }
+  .cart-item .stockCounter input{
+    width: 30px;
+    height: 25px;
+    padding: 0;
+    margin: 0 3px;
+  }
+  #delete_cart_item {
+    margin: -10px;
+  }
+  .empty{
+    font-size: 25px;
+  }
+  .placed{
+    font-size: 18px;
   }
 }

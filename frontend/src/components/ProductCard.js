@@ -1,6 +1,16 @@
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
 export default function ProductCard({product}){
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, []);
 
     const formatPriceWithCommas = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -8,7 +18,8 @@ export default function ProductCard({product}){
 
     const formattedPrice = formatPriceWithCommas(product.price);
 
-    return  <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+    return  isLoading ? ( <img className="spinner" src='images/spinner.svg' alt='spinner'/> ) : (
+            <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                 <div className="card p-3 rounded">
                     <img className="card-img-top mx-auto" src={product.image} alt={product.name}/>
                     <div className="card-body d-flex flex-column">
@@ -25,4 +36,5 @@ export default function ProductCard({product}){
                     <Link to={"/product/"+product._id} href="#" id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>
+    );
 }
