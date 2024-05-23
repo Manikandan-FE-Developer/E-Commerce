@@ -83,8 +83,8 @@ nav {
   font-weight: bold;
   font-size: 0.9rem;
 }
-/* Login button*/
-.loginBtn{
+/* Login, Signup, Logout button*/
+.loginBtn , .registerBtn, .logoutBtn{
   width: 80px;
   padding: 5px;
   color: white;
@@ -95,25 +95,13 @@ nav {
 .loginBtn:hover{
   border: 1px solid white;
 }
-/* Register button*/
-.registerBtn{
-  width: 80px;
-  padding: 5px;
-  color: white;
-  background-color: orange;
-  border-radius: 5px;
-  border-style: none;
-}
-.registerBtn:hover{
-  border: 1px solid white;
-}
 
 /* Home page */
 #products_heading {
   margin-top: 1.5rem;
   margin-bottom: -2rem;
 }
-.spinner{
+.pcSpinner{
   width: 200px;
   margin-right: 85px;
 }
@@ -177,6 +165,10 @@ transition: all 0.3s ease-out;
 }
 
 /* Product Details Page */
+.pdSpinner{
+  width: 200px;
+  margin-top: 100px;
+}
 #product_image img{
   margin-top: 40px;
   width: 450px;
@@ -271,15 +263,22 @@ transition: all 0.3s ease-out;
   height: 400px;
   margin-top: 30px;
   padding: 20px;
-  border: 1px solid gray;
+  border: 0px solid gray;
   border-radius: 5px;
-  box-shadow: 0px 0px 25px rgb(122, 115, 115);
+  box-shadow: 0px 0px 15px rgb(179, 169, 169);
 }
 .login input{
   width: 300px;
   padding: 5px;
   margin-top: 30px;
   border-radius: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  transition: border 0.3s ease;
+}
+.login input:focus{
+  border: 2px solid orange;
+  outline: none;
 }
 .login button{
   color: white;
@@ -296,7 +295,7 @@ transition: all 0.3s ease-out;
   font-weight: bold;
 }
 .login hr{
-  width: 300px;
+  width: 100%;
   border: 1px solid rgba(114, 107, 107, 0.555);
   color: black;
 }
@@ -306,15 +305,22 @@ transition: all 0.3s ease-out;
   height: auto;
   margin-top: 30px;
   padding: 20px;
-  border: 1px solid gray;
+  border: 0px solid gray;
   border-radius: 5px;
-  box-shadow: 0px 0px 25px rgb(122, 115, 115);
+  box-shadow: 0px 0px 15px rgb(179, 169, 169);
 }
 .register input{
   width: 300px;
   padding: 5px;
   margin-top: 15px;
   border-radius: 5px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  transition: border 0.3s ease;
+}
+.register input:focus{
+  border: 2px solid orange;
+  outline: none;
 }
 .register button{
   color: white;
@@ -331,7 +337,7 @@ transition: all 0.3s ease-out;
   font-weight: bold;
 }
 .register hr{
-  width: 300px;
+  width: 100%;
   border: 1px solid rgba(114, 107, 107, 0.555);
   color: black;
 }
@@ -353,7 +359,7 @@ footer p{
   body{
     font-family: 'Amazon Ember';
   }
-  .spinner{
+  .pcSpinner{
     margin-left: 60px;
   }
   /* .toaster{
@@ -362,7 +368,7 @@ footer p{
     height:30px;
     font-size:13px;
   } */
-  .navCart, .navLogin, .navRegister{
+  .navCart, .navLogin, .navRegister, .navLogout{
       display: none;
   }
   .navLogo {
@@ -412,6 +418,16 @@ footer p{
   .menuItems a i {
       margin-right: 5px;
   }
+  .menuItems.open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0; 
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
   .login{
     width: 90%;
     height: 100%;
@@ -419,7 +435,7 @@ footer p{
   .login h1{
     font-size: 30px;
   }
-  .login input, .login button, .login hr{
+  .login input, .login button{
     width: 100%;
   }
   .register{
@@ -429,7 +445,7 @@ footer p{
   .register h1{
     font-size: 30px;
   }
-  .register input, .register button, .register hr{
+  .register input, .register button{
     width: 100%;
   }
   #products_heading {

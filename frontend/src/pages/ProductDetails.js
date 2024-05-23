@@ -49,7 +49,7 @@ export default function ProductDetails({cartItems, setCartItems}){
         }
     }
 
-    return  isLoading ? ( <img className="spinner" src='/images/spinner.svg' alt='spinner'/> ) : (
+    return  isLoading ? ( <img className="pdSpinner" src='/images/spinner.svg' alt='spinner'/> ) : (
             product &&  <div className="container container-fluid">
                             <div className="row f-flex justify-content-around">
                                 <div className="col-12 col-lg-5 img-fluid" id="product_image">

@@ -18,7 +18,7 @@ export default function ProductCard({product}){
 
     const formattedPrice = formatPriceWithCommas(product.price);
 
-    return  isLoading ? ( <img className="spinner" src='images/spinner.svg' alt='spinner'/> ) : (
+    return  isLoading ? ( <img className="pcSpinner" src='images/spinner.svg' alt='spinner'/> ) : (
             <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                 <div className="card p-3 rounded">
                     <img className="card-img-top mx-auto" src={product.image} alt={product.name}/>

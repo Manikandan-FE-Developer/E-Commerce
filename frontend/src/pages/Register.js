@@ -3,16 +3,17 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function Register(){
+export default function Register({ handleLogin }) {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [message, setMessage] = useState("");
-    const history=useNavigate();
+    const history = useNavigate();
 
-    async function submit(e){
+    async function submit(e) {
+        
         e.preventDefault();
 
         setMessage("Loading...");
@@ -27,41 +28,47 @@ export default function Register(){
             setMessage("Passwords do not match");
         } else {
             try {
-                const response = await axios.post("http://localhost:8000/signup", {
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, {
+                    firstname,
+                    lastname,
                     email,
                     password
                 });
-                
-                if (response.data === "exist") {
+
+                if (response.data.message === "User already exists") {
                     setMessage("User already exists");
-                } else if (response.data === "notexist") {
+                } else if (response.data.message === "User registered successfully") {
                     toast.success("Registration Successful");
-                    history("/home", { state: { id: email } });
+                    handleLogin();
+                    history("/", { state: { id: email } });
                 }
             } catch (error) {
-                setMessage("Something went wrong");
-                console.log(error);
+                if (error.response.status === 409) {
+                    setMessage('Email address is already in use');
+                } else {
+                    setMessage('Something went wrong');
+                    console.error(error);
+                }
             }
         }
-
         setTimeout(() => {
             setMessage("");
         }, 3000);
     }
 
-    return(
+    return (
         <div className="container register">
             <h1>Register</h1>
-            <form action="POST">
-                <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)}/><br/>
-                <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)}/><br/>
-                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/><br/>
-                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/><br/>
-                <input type="password" placeholder="Confirm password" onChange={(e) => setConfirm(e.target.value)}/><br/>
-                <button onClick={submit}>Submit</button>
+            <form onSubmit={submit}>
+                <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} /><br />
+                <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)} /><br />
+                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} /><br />
+                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br />
+                <input type="password" placeholder="Confirm password" onChange={(e) => setConfirm(e.target.value)} /><br />
+                <button type="submit">Submit</button>
                 <p>{message}</p>
-                <hr/>
-                <Link to="/login">Already I'm an user</Link>
+                <hr />
+                <Link to="/login">Already I'm a user</Link>
             </form>
         </div>
     );

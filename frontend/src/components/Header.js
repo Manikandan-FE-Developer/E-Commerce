@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
-export default function Header({ cartItems }) {
+export default function Header({ cartItems, authenticated, handleLogout, firstName }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -32,16 +32,26 @@ export default function Header({ cartItems }) {
                     <span className="ml-1" id="cart_count">{cartItems.length}</span>
                 </Link>
             </div>
-            <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navLogin">
-                <Link to={"/login"} onClick={closeMenu}>
-                    <button className="loginBtn"><i className="fa fa-sign-in"></i> Login</button>
-                </Link>
-            </div>
-            <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navRegister">
-                <Link to={"/register"} onClick={closeMenu}>
-                    <button className="registerBtn"><i className="fa fa-user-plus"></i> Signup</button>
-                </Link>
-            </div>
+            {authenticated ? (
+                <>
+                    <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navLogout">
+                        <button className="logoutBtn" onClick={handleLogout}><i className="fa fa-sign-out"></i> Logout {firstName}</button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navLogin">
+                        <Link to={"/login"} onClick={closeMenu}>
+                            <button className="loginBtn"><i className="fa fa-sign-in"></i> Login</button>
+                        </Link>
+                    </div>
+                    <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navRegister">
+                        <Link to={"/register"} onClick={closeMenu}>
+                            <button className="registerBtn"><i className="fa fa-user-plus"></i> Signup</button>
+                        </Link>
+                    </div>
+                </>
+            )}
             <div className="col-12 col-md navMenu">
                 <div className="menuIcon">
                     {menuOpen ? (
@@ -51,9 +61,15 @@ export default function Header({ cartItems }) {
                     )}
                 </div>
                 <div className={`menuItems ${menuOpen ? 'open' : ''}`}>
-                    <Link to="/login" onClick={closeMenu}><i className="fa fa-sign-in"></i> Login</Link>
-                    <Link to="/register" onClick={closeMenu}><i className="fa fa-user-plus"></i> Signup</Link>
                     <Link to="/cart" onClick={closeMenu}><i className="fa fa-shopping-cart"></i> Cart</Link>
+                    {authenticated ? (
+                        <Link to="#" onClick={() => { closeMenu(); handleLogout(); }}><i class="fa-solid fa-right-from-bracket"></i> Logout {firstName}</Link>
+                    ) : (
+                        <>
+                            <Link to="/login" onClick={closeMenu}><i className="fa fa-sign-in"></i> Login</Link>
+                            <Link to="/register" onClick={closeMenu}><i className="fa fa-user-plus"></i> Signup</Link>
+                        </>
+                    )}
                 </div>
             </div>
         </nav>
