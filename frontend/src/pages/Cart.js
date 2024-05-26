@@ -6,11 +6,11 @@ export default function Cart({cartItems, setCartItems}){
     const [complete, setComplete] = useState(false);
 
     function increaseQty(item){
-        if (item.product.stock == item.qty) {
+        if (item.product.stock === item.qty) {
             return;
         }
         const updatedItems = cartItems.map((i) => {
-            if (i.product._id == item.product._id) {
+            if (i.product._id === item.product._id) {
                 i.qty++
             }
             return i;
@@ -21,7 +21,7 @@ export default function Cart({cartItems, setCartItems}){
     function decreaseQty(item){
         if (item.qty > 1) {
             const updatedItems = cartItems.map((i) => {
-                if (i.product._id == item.product._id) {
+                if (i.product._id === item.product._id) {
                     i.qty--
                 }
                 return i;
@@ -31,11 +31,7 @@ export default function Cart({cartItems, setCartItems}){
     }
 
     function removeItem(item){
-        const updatedItems = cartItems.filter((i) => {
-            if (i.product._id !== item.product._id) {
-                return true;
-            }
-        })
+        const updatedItems = cartItems.filter((i) => i.product._id !== item.product._id);
         setCartItems(updatedItems);
     }
 
@@ -72,9 +68,7 @@ export default function Cart({cartItems, setCartItems}){
                                             <img src={item.product.image} alt={item.product.name} height="90" width="115"/>
                                         </div>
                                         <div class="col-5 col-lg-3">
-                                            <Link to={"/product/"+item.product._id}>
-                                                <a href="#">{item.product.name}</a>
-                                            </Link>
+                                            <Link to={"/product/"+item.product._id}>{item.product.name}</Link>
                                         </div>
                                         <div class="col-4 col-lg-2 mt-4 mt-lg-0">
                                         <p id="card_item_price">₹ {formatPriceWithCommas(item.product.price)}</p>
@@ -125,4 +119,4 @@ export default function Cart({cartItems, setCartItems}){
                 <p>Your order has been placed.......</p>
                 <img width="250px" src="/images/orderPlaced.png" alt="orderPlaced"/>
             </Fragment>)
- }
+}

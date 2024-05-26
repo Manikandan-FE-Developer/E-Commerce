@@ -101,6 +101,9 @@ nav {
   margin-top: 1.5rem;
   margin-bottom: -2rem;
 }
+.banner{
+  width: 100%;
+}
 .pcSpinner{
   width: 200px;
   margin-right: 85px;
@@ -450,6 +453,9 @@ footer p{
   }
   #products_heading {
     font-size: 30px;
+  }
+  .swiper .swiper-slide img{
+    height: 120px;
   }
   #product_image img{
     width: 200px;
