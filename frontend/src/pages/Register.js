@@ -39,7 +39,7 @@ export default function Register({ handleLogin }) {
                     setMessage("User already exists");
                 } else if (response.data.message === "User registered successfully") {
                     toast.success("Registration Successful");
-                    handleLogin();
+                    handleLogin(response.data.firstname);
                     history("/", { state: { id: email } });
                 }
             } catch (error) {

@@ -95,7 +95,17 @@ nav {
 .loginBtn:hover{
   border: 1px solid white;
 }
-
+.user{
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.user:hover{
+  color: orange;
+}
+.logoutBtn{
+  background-color: red;
+}
 /* Home page */
 #products_heading {
   margin-top: 1.5rem;
@@ -371,7 +381,7 @@ footer p{
     height:30px;
     font-size:13px;
   } */
-  .navCart, .navLogin, .navRegister, .navLogout{
+  .navCart, .navLogin, .navRegister, .navLogout, .navUser{
       display: none;
   }
   .navLogo {
@@ -403,7 +413,7 @@ footer p{
       background-color: #232f3e;
       z-index: 1;
   }
-  .menuItems a {
+  .menuItems a, .menuItems p {
       display: block;
       padding: 10px 20px;
       text-align: center;
@@ -455,7 +465,7 @@ footer p{
     font-size: 30px;
   }
   .swiper .swiper-slide img{
-    height: 120px;
+    height: 100px;
   }
   #product_image img{
     width: 200px;

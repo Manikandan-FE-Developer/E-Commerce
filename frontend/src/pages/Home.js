@@ -36,13 +36,13 @@ export default function Home() {
             <div className="swiper">
                 <Slider {...settings}>
                     <div className="swiper-slide">
-                        <img src='/images/banner1.jpg' className='banner' alt='banner1'/>
+                        <img src='/images/banner1.jpg' className='banner banner1' alt='banner1'/>
                     </div>
                     <div className="swiper-slide">
-                        <img src='/images/banner2.jpg' className='banner' alt='banner2'/>
+                        <img src='/images/banner2.jpg' className='banner banner2' alt='banner2'/>
                     </div>
                     <div className="swiper-slide">
-                        <img src='/images/banner3.jpg' className='banner' alt='banner3'/>
+                        <img src='/images/banner3.jpg' className='banner banner3' alt='banner3'/>
                     </div>
                 </Slider>
             </div>

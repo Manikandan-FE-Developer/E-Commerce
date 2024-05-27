@@ -23,7 +23,7 @@ export default function Header({ cartItems, authenticated, handleLogout, firstNa
                     </Link>
                 </div>
             </div>
-            <div className="col-12 col-md-6 mt-2 mt-md-0 navSearch">
+            <div className="col-12 col-md-5 mt-2 mt-md-0 navSearch">
                 <Search />
             </div>
             <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navCart">
@@ -34,19 +34,22 @@ export default function Header({ cartItems, authenticated, handleLogout, firstNa
             </div>
             {authenticated ? (
                 <>
+                    <div className="col-12 col-md-2 mt-4 mt-md-0 text-center navUser">
+                        <p className="user"><i className="fa fa-user"></i> {firstName}</p>
+                    </div>
                     <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navLogout">
-                        <button className="logoutBtn" onClick={handleLogout}><i className="fa fa-sign-out"></i> Logout {firstName}</button>
+                        <button className="logoutBtn" onClick={handleLogout}><i className="fa fa-sign-out"></i> Logout</button>
                     </div>
                 </>
             ) : (
                 <>
                     <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navLogin">
-                        <Link to={"/login"} onClick={closeMenu}>
+                        <Link to={"/login"}>
                             <button className="loginBtn"><i className="fa fa-sign-in"></i> Login</button>
                         </Link>
                     </div>
                     <div className="col-12 col-md-1 mt-4 mt-md-0 text-center navRegister">
-                        <Link to={"/register"} onClick={closeMenu}>
+                        <Link to={"/register"}>
                             <button className="registerBtn"><i className="fa fa-user-plus"></i> Signup</button>
                         </Link>
                     </div>
@@ -63,7 +66,10 @@ export default function Header({ cartItems, authenticated, handleLogout, firstNa
                 <div className={`menuItems ${menuOpen ? 'open' : ''}`}>
                     <Link to="/cart" onClick={closeMenu}><i className="fa fa-shopping-cart"></i> Cart</Link>
                     {authenticated ? (
-                        <Link to="#" onClick={() => { closeMenu(); handleLogout(); }}><i class="fa-solid fa-right-from-bracket"></i> Logout {firstName}</Link>
+                        <>
+                            <Link to="#" className="userName" onClick={closeMenu}><i class="fa fa-user"></i> {firstName}</Link>
+                            <Link to="#" onClick={() => { closeMenu(); handleLogout(); }}><i class="fa fa-sign-out"></i> Logout</Link>
+                        </>
                     ) : (
                         <>
                             <Link to="/login" onClick={closeMenu}><i className="fa fa-sign-in"></i> Login</Link>
