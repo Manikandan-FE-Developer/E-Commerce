@@ -24,6 +24,8 @@ export default function Register({ handleLogin }) {
             setMessage("Please fill in all fields");
         } else if (!emailRegex.test(email)) {
             setMessage("Incorrect email format");
+        } else if (password.length < 8) {
+            setMessage('Password must contain at least 8 characters');
         } else if (password !== confirm) {
             setMessage("Passwords do not match");
         } else {

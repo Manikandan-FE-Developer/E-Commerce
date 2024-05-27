@@ -14,7 +14,13 @@ const user = require('./routes/user');
 connectDatabase();
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://e-commerce-r0a8.onrender.com', 
+    optionsSuccessStatus: 200
+  };
+  
+app.use(cors(corsOptions));
 
 app.use('/api/v1/',products);
 app.use('/api/v1/',orders);
