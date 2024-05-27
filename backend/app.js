@@ -74,14 +74,23 @@ app.get("/", (req, res) => {
     res.send("<h1>E-Commerce Website...</h1>");
 });
 
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error');
+});
+
 // Start the server
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });
 
-// Handle uncaught exceptions
-process.on('uncaughtException', err => {
-    console.error(`Uncaught Exception: ${err.message}`);
-    process.exit(1);
+// Graceful Shutdown
+process.on('SIGINT', () => {
+    console.log('Shutting down server...');
+    server.close(() => {
+        console.log('Server shut down gracefully');
+        process.exit(0);
+    });
 });
