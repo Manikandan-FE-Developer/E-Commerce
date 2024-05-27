@@ -11,7 +11,12 @@ const products = require('./routes/product');
 const orders = require('./routes/order');
 const user = require('./routes/user');
 
-connectDatabase();
+connectDatabase()
+.then(() => console.log("Database connected successfully"))
+.catch(err => {
+  console.error(`Database connection error: ${err.message}`);
+  process.exit(1);
+});
 
 app.use(express.json());
 
@@ -33,5 +38,13 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT, () => { 
     console.log(`Server listening to port ${process.env.PORT} in ${process.env.NODE_ENV}`);
 })
+
+process.on('uncaughtException', err => {
+    console.error(`Uncaught Exception: ${err.message}`);
+    process.exit(1);
+});
+
+
+
 
 // mongodb://0.0.0.0:27017/e-commerce
