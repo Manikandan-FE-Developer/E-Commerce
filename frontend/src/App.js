@@ -19,13 +19,13 @@ function App() {
    const handleLogin = (name) => {
       setAuthenticated(true);
       setFirstName(name);
-  };
+   };
 
-  const handleLogout = () => {
+   const handleLogout = () => {
       toast.success('Logout Successful');
       setAuthenticated(false);
       setFirstName('');
-  };
+   };
 
    return (
       <div className="App">
