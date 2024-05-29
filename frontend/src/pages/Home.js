@@ -52,7 +52,7 @@ export default function Home() {
                     <img className="spinner" src='/images/spinner.svg' alt='spinner'/>
                 ) : (
                     <div className="row">
-                        {products.map(product => ( <ProductCard key={product.id} product={product} />))}
+                        {products.map(product => ( <ProductCard key={product._id} product={product} />))}
                     </div>
                 )}
             </section>

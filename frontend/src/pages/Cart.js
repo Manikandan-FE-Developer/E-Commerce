@@ -45,7 +45,6 @@ export default function Cart({cartItems, setCartItems}){
             setCartItems([]);
             setComplete(true);
             toast.success("Order Success!");
-            // toast.success("Order Success!", {className: 'toast'});
         })
     }
 

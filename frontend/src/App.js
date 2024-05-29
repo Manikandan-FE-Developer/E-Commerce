@@ -31,7 +31,7 @@ function App() {
       <div className="App">
          <Router>
             <div>
-               <ToastContainer className="toaster" theme='dark' position="top-center" autoClose={5000}/>
+               <ToastContainer className="toaster" theme='dark' position="top-center" autoClose={2000}/>
                <Header cartItems={cartItems} authenticated={authenticated} handleLogout={handleLogout} firstName={firstName}/>
                   <Routes>
                      <Route path="/" element={<Home/>}/>
