@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {ToastContainer, toast} from 'react-toastify';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,6 +26,13 @@ function App() {
       setAuthenticated(false);
       setFirstName('');
    };
+
+   useEffect(() => {
+      const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+      if (savedCartItems) {
+         setCartItems(savedCartItems);
+      }
+   }, []);
 
    return (
       <div className="App">

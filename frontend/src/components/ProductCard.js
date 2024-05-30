@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 export default function ProductCard({product}){
     const [isLoading, setIsLoading] = useState(true);
+    const [isInWishlist, setIsInWishlist] = useState(false);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -18,9 +19,27 @@ export default function ProductCard({product}){
 
     const formattedPrice = formatPriceWithCommas(product.price);
 
+    useEffect(() => {
+        const savedWishlist = JSON.parse(localStorage.getItem('wishlist'));
+        if (savedWishlist && savedWishlist.includes(product._id)) {
+            setIsInWishlist(true);
+        }
+    }, [product._id]);
+
+    const handleToggleWishlist = () => {
+        const updatedWishlist = isInWishlist
+            ? JSON.parse(localStorage.getItem('wishlist')).filter((itemId) => itemId !== product._id)
+            : [...(JSON.parse(localStorage.getItem('wishlist')) || []), product._id];
+        localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+        setIsInWishlist(!isInWishlist);
+    };
+
     return  isLoading ? ( <img className="pcSpinner" src='images/spinner.svg' alt='spinner'/> ) : (
             <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                 <div className="card p-3 rounded">
+                    <div className="favIcon1" onClick={handleToggleWishlist}>
+                        <i className={`fa fa-heart${isInWishlist ? ' text-danger' : '-o'}`} />
+                    </div>
                     <img className="card-img-top mx-auto" src={product.image} alt={product.name}/>
                     <div className="card-body d-flex flex-column">
                         <h5 className="card-title">

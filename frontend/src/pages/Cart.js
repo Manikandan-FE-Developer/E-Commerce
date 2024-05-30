@@ -1,8 +1,10 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Cart({cartItems, setCartItems}){
+    console.log("cartItems in Cart component:", cartItems);
+
     const [complete, setComplete] = useState(false);
 
     function increaseQty(item){
@@ -16,6 +18,7 @@ export default function Cart({cartItems, setCartItems}){
             return i;
         })
         setCartItems(updatedItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedItems));
     }
 
     function decreaseQty(item){
@@ -27,13 +30,22 @@ export default function Cart({cartItems, setCartItems}){
                 return i;
             })
             setCartItems(updatedItems);
+            localStorage.setItem('cartItems', JSON.stringify(updatedItems));
         }
     }
 
     function removeItem(item){
         const updatedItems = cartItems.filter((i) => i.product._id !== item.product._id);
         setCartItems(updatedItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedItems));
     }
+
+    useEffect(() => {
+        const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+        if (savedCartItems) {
+            setCartItems(savedCartItems);
+        }
+    }, []);
 
     function placeOrderHandler(){
         fetch(process.env.REACT_APP_API_URL+'/order', {
@@ -42,10 +54,15 @@ export default function Cart({cartItems, setCartItems}){
             body : JSON.stringify(cartItems)
         })
         .then(() => {
+            localStorage.removeItem('cartItems');
             setCartItems([]);
             setComplete(true);
             toast.success("Order Success!");
         })
+        .catch(error => {
+            console.error('Error placing order:', error);
+            toast.error("Failed to place order. Please try again later.");
+        });
     }
 
     const formatPriceWithCommas = (price) => {
