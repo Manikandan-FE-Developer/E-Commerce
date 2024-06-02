@@ -16,13 +16,24 @@ function App() {
    const [authenticated, setAuthenticated] = useState(false);
    const [firstName, setFirstName] = useState('');
 
+   useEffect(() => {
+      const loggedInUser = localStorage.getItem('user');
+      if (loggedInUser) {
+          const user = JSON.parse(loggedInUser);
+          setAuthenticated(true);
+          setFirstName(user.firstName);
+      }
+   }, []);
+
    const handleLogin = (name) => {
       setAuthenticated(true);
       setFirstName(name);
+      localStorage.setItem('user', JSON.stringify({ firstName: name }));
    };
 
    const handleLogout = () => {
       toast.success('Logout Successful');
+      localStorage.removeItem("user");
       setAuthenticated(false);
       setFirstName('');
    };

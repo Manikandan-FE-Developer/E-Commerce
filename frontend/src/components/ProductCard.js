@@ -34,12 +34,26 @@ export default function ProductCard({product}){
         setIsInWishlist(!isInWishlist);
     };
 
+    // const [liked, setLiked] = useState(false);
+    // const [likesAmount, setLikesAmount] = useState(7);
+  
+    // const handleLikeClick = () => {
+    //   setLiked((prevLiked) => !prevLiked);
+    //   setLikesAmount((prevLikes) => (prevLiked ? prevLikes - 1 : prevLikes + 1));
+    // };
+
     return  isLoading ? ( <img className="pcSpinner" src='images/spinner.svg' alt='spinner'/> ) : (
             <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                 <div className="card p-3 rounded">
                     <div className="favIcon1" onClick={handleToggleWishlist}>
                         <i className={`fa fa-heart${isInWishlist ? ' text-danger' : '-o'}`} />
                     </div>
+                    {/* <div className="like-button">
+                        <div className={liked ? "heart-bg liked" : "heart-bg"} onClick={handleLikeClick}>
+                            <div className="heart-icon"></div>
+                        </div>
+                        <div className="likes-amount">{likesAmount}</div>
+                    </div> */}
                     <img className="card-img-top mx-auto" src={product.image} alt={product.name}/>
                     <div className="card-body d-flex flex-column">
                         <h5 className="card-title">

@@ -53,7 +53,7 @@ export default function Login({ handleLogin }) {
     }
 
     return (
-        <div className="container login">
+        <div className="container login" style={{ backgroundImage: "url(/images/Bg.jpg)", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center",}}>
             <h1>Login</h1>
             <form onSubmit={logIn}>
                 <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} /><br />

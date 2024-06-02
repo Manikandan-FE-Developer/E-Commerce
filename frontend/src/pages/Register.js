@@ -59,7 +59,7 @@ export default function Register({ handleLogin }) {
     }
 
     return (
-        <div className="container register">
+        <div className="container register" style={{ backgroundImage: "url(/images/Bg.jpg)", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center",}}>
             <h1>Register</h1>
             <form onSubmit={submit}>
                 <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} /><br />
