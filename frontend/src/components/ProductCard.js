@@ -57,7 +57,7 @@ export default function ProductCard({product}){
                     <img className="card-img-top mx-auto" src={product.image} alt={product.name}/>
                     <div className="card-body d-flex flex-column">
                         <h5 className="card-title">
-                        <Link to={"/product/"+product._id}>{product.name}</Link>
+                            <Link to={"/product/"+product._id}>{product.name}</Link>
                         </h5>
                     </div>
                     <div className="ratings mt-auto">

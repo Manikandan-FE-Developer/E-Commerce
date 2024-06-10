@@ -175,7 +175,7 @@ nav {
 .card-title a:hover {
   color: #fa9c23;
   text-decoration: none;
-transition: all 0.3s ease-out; 
+  transition: all 0.3s ease-out; 
 }
 .card-body {
   padding-left: 0;
@@ -514,8 +514,6 @@ footer hr{
     cursor: pointer;
     color: white;
     background-color: #232f3e;
-  }
-  .menuItems a{
     text-decoration: none;
   }
   .menuItems a:hover{
