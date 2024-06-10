@@ -17,7 +17,7 @@ This is a full-stack E-Commerce website built using the MERN stack (MongoDB, Exp
   - React.js
   - Redux (for state management)
   - React Router (for navigation)
-  - Axios (for HTTP requests)
+  - Fetch API (for HTTP requests)
   - Bootstrap (for styling)
 
 - **Backend**:
